@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour {
 	public float gravity = 20f;
 	private Vector3 moveDirection = Vector3.zero;
 	private Vector3 cameraRot;
+	private CharacterController controller;
 
 	private void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
+		controller = GetComponent<CharacterController>();
 	}
 
 	void Update()
@@ -25,7 +27,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void Move()
 	{
-		CharacterController controller = GetComponent<CharacterController>();
 
 		// is the controller on the ground?
 		if (controller.isGrounded)
