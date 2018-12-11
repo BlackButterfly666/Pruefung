@@ -63,12 +63,15 @@
     <Compile Include="Assets\_Scripts\Gameplay\CameraMovement.cs" />
     <Compile Include="Assets\_Scripts\Gameplay\CollectItem.cs" />
     <Compile Include="Assets\_Scripts\Gameplay\PlayerMovement.cs" />
+    <Compile Include="Assets\_Scripts\LerpMovement.cs" />
     <Compile Include="Assets\_Scripts\Menu\AudioManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\EventManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\LevelManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\Master.cs" />
     <Compile Include="Assets\_Scripts\Menu\MenuManager.cs" />
-    <Compile Include="Assets\_Scripts\Menu\TESTTURN.cs" />
+    <Compile Include="Assets\_Scripts\Menu\MenuTurn.cs" />
+    <Compile Include="Assets\_Scripts\Menu\OpenerManager.cs" />
+    <Compile Include="Assets\_Scripts\Menu\TextContainer.cs" />
     <Compile Include="Assets\PosProcessor.cs" />
     <None Include="Assets\Shader\Farbfront.shader" />
     <Reference Include="UnityEditor.StandardEvents">

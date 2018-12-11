@@ -10,6 +10,8 @@ public class CollectItem : MonoBehaviour
 	[SerializeField] Material posProcessing;
 	[SerializeField] Shader farbfront;
 
+	[SerializeField] int colordropCount = 0;
+
 	private string rDrop = "_RedDrops";
 	private string gDrop = "_GreenDrops";
 	private string bDrop = "_BlueDrops";
@@ -28,9 +30,28 @@ public class CollectItem : MonoBehaviour
 		float greenDropAmount = posProcessing.GetFloat(gDrop);
 		float blueDropAmount = posProcessing.GetFloat(bDrop);
 
-		if (other.CompareTag("red")) { posProcessing.SetFloat(rDrop, redDropAmount + 0.2f); }
-		if (other.CompareTag("green")) { posProcessing.SetFloat(gDrop, greenDropAmount + 0.2f); }
-		if (other.CompareTag("blue")) { posProcessing.SetFloat(bDrop, blueDropAmount + 0.2f); }
+		if (other.CompareTag("red"))
+		{
+			posProcessing.SetFloat(rDrop, redDropAmount + 0.2f);
+			other.gameObject.SetActive(false);
+			colordropCount++;
+		}
+
+		if (other.CompareTag("green"))
+		{
+			posProcessing.SetFloat(gDrop, greenDropAmount + 0.2f);
+			other.gameObject.SetActive(false);
+			colordropCount++;
+		}
+
+		if (other.CompareTag("blue"))
+		{
+			posProcessing.SetFloat(bDrop, blueDropAmount + 0.2f);
+			other.gameObject.SetActive(false);
+			colordropCount++;
+		}
+
+		//other.gameObject.SetActive(false);
 
 		//if (!other.CompareTag("red")) { return; }
 		//posProcessing.SetFloat("_BlueDrops", 1f);

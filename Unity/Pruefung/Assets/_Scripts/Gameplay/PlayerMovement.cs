@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public Transform cam;
 	public float speed = 4f;
 	public float jumpSpeed = 7f;
 	public float gravity = 20f;
 	private Vector3 moveDirection = Vector3.zero;
-	private Vector3 cameraRot;
 	private CharacterController controller;
 
 	private void Start()

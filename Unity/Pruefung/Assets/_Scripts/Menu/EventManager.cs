@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
+	MenuManager menuManager;
 	public UnityEvent StartPlaying = new UnityEvent();
 	public UnityEvent<ActiveMenu> ChangeMenu = new ActiveMenuEvent();
 	public UnityEvent<float> ChangeVolume = new FloatEvent();
@@ -27,15 +28,29 @@ public class EventManager : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
+		if (Input.GetKeyDown(KeyCode.Escape)) //{ Application.Quit(); } //PauseMenu und dann Quit
+		{
+			ChangeMenu.Invoke(ActiveMenu.PauseMenu);
+			menuManager.PauseMenu.SetActive(true);
+		}
 	}
 
 	#region Button Invoke
 
 	//Menu changing
+	public void ToMainMenuButton() { ChangeMenu.Invoke(ActiveMenu.MainMenu); }
+	public void ToSettingsButton() { ChangeMenu.Invoke(ActiveMenu.Settings); }
+	public void ToCreditsButton() { ChangeMenu.Invoke(ActiveMenu.Credits); }
+	public void StartPlayingButton() { ChangeMenu.Invoke(ActiveMenu.Opener); }
+	public void SkipIntroButton() { StartPlaying.Invoke(); }
 
-	//public void "Methodenname"() {ChangeMenu.Invoke(ActiveMenu.Opener);} 
+	public void QuitGame() { Application.Quit(); }
 	//public void ClosePanel(GameObject go) { go.SetActive(false); }
+
+	//Settings
+	public void SoundVolSlider(float soundVol) { ChangeVolume.Invoke(soundVol); }
+	public void MusicVolSlider(float musicVol) { ChangeVolume.Invoke(musicVol); }
+
 
 	#endregion
 }

@@ -1,0 +1,7 @@
+
+- Background/Foreground image
+- Wagner Image
+- Wagner Animation
+- branch with renderer + branch scaled with collider ???
+
+- story panels with story and images
