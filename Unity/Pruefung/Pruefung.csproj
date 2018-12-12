@@ -624,24 +624,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.PackageManagerUI.Editor.csproj">
-      <Project>{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}</Project>
-      <Name>Unity.PackageManagerUI.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.StandardEvents.csproj">
       <Project>{6800202F-4402-D405-F8CB-03DC7BD78B92}</Project>
       <Name>UnityEditor.StandardEvents</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.PackageManagerUI.Editor.csproj">
+      <Project>{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}</Project>
+      <Name>Unity.PackageManagerUI.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\Gameplay\CameraMovement.cs" />
+    <Compile Include="Assets\_Scripts\Gameplay\CollectItem.cs" />
     <Compile Include="Assets\_Scripts\Gameplay\PlayerMovement.cs" />
+    <Compile Include="Assets\_Scripts\LerpMovement.cs" />
     <Compile Include="Assets\_Scripts\Menu\AudioManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\EventManager.cs" />
+    <Compile Include="Assets\_Scripts\Menu\HUD.cs" />
+    <Compile Include="Assets\_Scripts\Menu\InstancePrefab.cs" />
     <Compile Include="Assets\_Scripts\Menu\LevelManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\Master.cs" />
     <Compile Include="Assets\_Scripts\Menu\MenuManager.cs" />
-    <Compile Include="Assets\_Scripts\Menu\TESTTURN.cs" />
+    <Compile Include="Assets\_Scripts\Menu\MenuTurn.cs" />
+    <Compile Include="Assets\_Scripts\Menu\OpenerManager.cs" />
+    <Compile Include="Assets\_Scripts\Menu\TextContainer.cs" />
     <Compile Include="Assets\PosProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
