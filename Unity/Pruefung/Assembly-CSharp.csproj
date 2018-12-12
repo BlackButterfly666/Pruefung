@@ -66,6 +66,8 @@
     <Compile Include="Assets\_Scripts\LerpMovement.cs" />
     <Compile Include="Assets\_Scripts\Menu\AudioManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\EventManager.cs" />
+    <Compile Include="Assets\_Scripts\Menu\HUD.cs" />
+    <Compile Include="Assets\_Scripts\Menu\InstancePrefab.cs" />
     <Compile Include="Assets\_Scripts\Menu\LevelManager.cs" />
     <Compile Include="Assets\_Scripts\Menu\Master.cs" />
     <Compile Include="Assets\_Scripts\Menu\MenuManager.cs" />

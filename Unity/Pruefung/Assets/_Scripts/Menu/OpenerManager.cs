@@ -16,34 +16,44 @@ public class OpenerManager : MonoBehaviour
 
 	[SerializeField] TextContainer textContainer;
 
+	EventManager eventManager;
+
 	int i;
 	float t = 3f;
 
-	void Start()
+	private void OnEnable()
 	{
+		eventManager = GetComponent<EventManager>();
+		eventManager.ChangeMenu.AddListener(BeginTransition);
+		eventManager.StartPlaying.AddListener(SkipTransition);
 	}
 
-	private void Update()
+	private void OnDisable()
 	{
-		if (opener.activeSelf == true)
-		{
-			StartCoroutine(FadeOut(t, text));
-			OpenerText();
-		}
+		eventManager.ChangeMenu.RemoveListener(BeginTransition);
+		eventManager.StartPlaying.RemoveListener(SkipTransition);
+	}
+
+	void BeginTransition(ActiveMenu activeMenu)
+	{
+		if(activeMenu != ActiveMenu.Opener) { return; }
+		StartCoroutine(FadeOut(t, text));
+		OpenerText();
+	}
+
+	void SkipTransition()
+	{
+		StopAllCoroutines();
 	}
 
 	public void OpenerText() //Textdump
 	{
-		openerText[0] = "Hallo"; //textContainer.text01;
-								 //openerText[1] = textContainer.text02;
-								 //openerText[2] = textContainer.text03;
-								 //openerText[3] = textContainer.text04;
-								 //openerText[4] = textContainer.text05;
-								 //openerText[5] = textContainer.text06;
-								 //openerText[6] = textContainer.text07;
-								 //openerText[7] = ;
-								 //openerText[8] = ;
-								 //openerText[9] = ;
+		openerText[0] = textContainer.text01;
+		openerText[1] = textContainer.text02;
+		openerText[2] = textContainer.text03;
+		openerText[3] = textContainer.text04;
+		openerText[4] = textContainer.text05;
+		openerText[5] = textContainer.text06;
 	}
 
 	public IEnumerator FadeIn(float t, Text text)
@@ -55,13 +65,12 @@ public class OpenerManager : MonoBehaviour
 			yield return null;
 		}
 
-		if (i <= 6) { StartCoroutine(FadeOut(t, text)); }
-		else { continueButton.SetActive(true); }
+		if (i <= 5) { StartCoroutine(FadeOut(t, text)); }
+		else { continueButton.gameObject.SetActive(true); }
 	}
 
 	public IEnumerator FadeOut(float t, Text text)
 	{
-		Debug.Log("FadeOut");
 		text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
 		while (text.color.a > 0.0f)
 		{
@@ -69,30 +78,12 @@ public class OpenerManager : MonoBehaviour
 			yield return null;
 		}
 
-		if (i <= 6)
+		if (i < 6)
 		{
 			StartCoroutine(FadeIn(t, text));
 			this.text.text = openerText[i];
 
 			i++;
-
-			//if (i == 7)
-			//{
-			//	Debug.Log("7" + i);
-			//	this.text.fontSize = 70;
-			//	t = 2f;
-			//}
-			//if (i == 8)
-			//{
-			//	Debug.Log("8" + i);
-			//	this.text.fontSize = 90;
-			//}
-			//if (i == 9)
-			//{
-			//	Debug.Log("9" + i);
-			//	this.text.fontSize = 120;
-			//	t = 1f;
-			//}
 		}
 	}
 }

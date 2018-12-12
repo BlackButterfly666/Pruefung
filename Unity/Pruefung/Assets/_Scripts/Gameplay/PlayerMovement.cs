@@ -9,11 +9,17 @@ public class PlayerMovement : MonoBehaviour {
 	public float gravity = 20f;
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
+	//[SerializeField] 
+	GameObject eventManagerObject;
+	EventManager eventManagerScript;
 
 	private void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		controller = GetComponent<CharacterController>();
+
+		eventManagerObject = GameObject.Find("Manager");
+		eventManagerScript = GetComponent<EventManager>();
 	}
 
 	void Update()
@@ -21,6 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 		Move();
 		//LockMouse();
 		//ReleaseMouse();
+		
+		if (Input.GetKeyDown(KeyCode.Escape)) { eventManagerScript.ChangeMenu.Invoke(ActiveMenu.PauseMenu); }
 	}
 
 	public void Move()

@@ -34,25 +34,25 @@ public class MenuTurn : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.L)) { TurnLeft(); }
-		else if (Input.GetKeyDown(KeyCode.R)) { TurnRight(); }
-		else if (Input.GetKeyDown(KeyCode.Space)) { TurnCenter(); }
-		else { Debug.Log("Please push R for right turn, L for left turn or space for center turn"); }
+		//if (Input.GetKeyDown(KeyCode.L)) { TurnLeft(); }
+		//else if (Input.GetKeyDown(KeyCode.R)) { TurnRight(); }
+		//else if (Input.GetKeyDown(KeyCode.C)) { TurnCenter(); }
+		//else { Debug.Log("Please push R for right turn, L for left turn or space for center turn"); }
 	}
 
-	void TurnRight()
+	public void TurnRight()
 	{
 		cam.transform.SetPositionAndRotation(rightPos, right);
 		//cam.transform.CamMovement(camRight, 10f);
 	}
 
-	void TurnLeft()
+	public void TurnLeft()
 	{
 		cam.transform.SetPositionAndRotation(leftPos, left);
 		//cam.transform.CamMovement(camLeft, 10f);
 	}
 
-	void TurnCenter()
+	public void TurnCenter()
 	{
 		cam.transform.SetPositionAndRotation(centerPos, center);
 		//cam.transform.CamMovement(camCenter, 10f);

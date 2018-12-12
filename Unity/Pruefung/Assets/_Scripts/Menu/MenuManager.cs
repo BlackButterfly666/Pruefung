@@ -9,7 +9,8 @@ public class MenuManager : MonoBehaviour
 	[SerializeField] public RectTransform Opener;
 	[SerializeField] public RectTransform Settings;
 	[SerializeField] public RectTransform Credits;
-	[SerializeField] public GameObject PauseMenu;
+	[SerializeField] public RectTransform PauseMenu;
+
 
 	EventManager eventManager;
 
@@ -33,6 +34,10 @@ public class MenuManager : MonoBehaviour
 			case ActiveMenu.MainMenu:
 				MainMenu.gameObject.SetActive(true);
 				Startscreen.gameObject.SetActive(false);
+				Opener.gameObject.SetActive(false);
+				Settings.gameObject.SetActive(false);
+				Credits.gameObject.SetActive(false);
+				PauseMenu.gameObject.SetActive(false);
 				MainMenu.SetAsLastSibling();
 				break;
 			case ActiveMenu.Opener:
@@ -41,10 +46,18 @@ public class MenuManager : MonoBehaviour
 				Opener.SetAsLastSibling();
 				break;
 			case ActiveMenu.Settings:
+				Settings.gameObject.SetActive(true);
+				MainMenu.gameObject.SetActive(false);
+				Settings.SetAsLastSibling();
 				break;
 			case ActiveMenu.Credits:
+				Credits.gameObject.SetActive(true);
+				MainMenu.gameObject.SetActive(false);
+				Credits.SetAsLastSibling();
 				break;
 			case ActiveMenu.PauseMenu:
+				PauseMenu.SetAsLastSibling();
+				PauseMenu.gameObject.SetActive(true);
 				break;
 			default:
 				break;
