@@ -29,6 +29,14 @@ public class MenuManager : MonoBehaviour
 	{
 		switch (activeMenu)
 		{
+            case ActiveMenu.None:
+                MainMenu.gameObject.SetActive(false);
+                Startscreen.gameObject.SetActive(false);
+                Opener.gameObject.SetActive(false);
+                Settings.gameObject.SetActive(false);
+                Credits.gameObject.SetActive(false);
+                PauseMenu.gameObject.SetActive(false);
+                break;
 			case ActiveMenu.Startscreen:
 				break;
 			case ActiveMenu.MainMenu:

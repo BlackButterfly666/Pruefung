@@ -20,8 +20,18 @@ public class HUD : MonoBehaviour
 	public void Awake()
 	{
 		colItem = GameObject.Find("Player").GetComponent<CollectItem>();
+	}
+
+    public void Update()
+    {
 		redCount.text = colItem.rDropCount.ToString() + "/5";
 		greenCount.text = colItem.gDropCount.ToString() + "/5";
 		blueCount.text = colItem.bDropCount.ToString() + "/5";
-	}
+        
+    }
+
+    public void OnDestroy()
+    {
+        
+    }
 }

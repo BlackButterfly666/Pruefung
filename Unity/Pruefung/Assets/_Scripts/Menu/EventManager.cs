@@ -26,11 +26,15 @@ public class EventManager : MonoBehaviour
 
 	private void Awake()
 	{
-		if (Instance != null && Instance != this) { Destroy(gameObject); }
-		else { Instance = this; }
 		levelManager = GetComponent<LevelManager>();
 		menuTurn = GetComponentInParent<MenuTurn>();
-	}
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else { Instance = this; }
+    }
 
 	public void Update()
 	{
@@ -49,7 +53,7 @@ public class EventManager : MonoBehaviour
 	public void ToCreditsButton() { ChangeMenu.Invoke(ActiveMenu.Credits); } //menuTurn.TurnLeft(); }
 	public void StartPlayingButton() { ChangeMenu.Invoke(ActiveMenu.Opener); }
 
-	public void SkipIntroButton() { StartPlaying.Invoke(); Destroy(menuManager.PauseMenu); }//ClosePanel(menuManager.MainMenu.gameObject); }
+	public void SkipIntroButton() { StartPlaying.Invoke(); ChangeMenu.Invoke(ActiveMenu.None); }//ClosePanel(menuManager.MainMenu.gameObject); }
 	public void BackToMainMenu()
 	{
 		BackToMenu.Invoke();
@@ -69,7 +73,7 @@ public class EventManager : MonoBehaviour
 	#endregion
 }
 
-public enum ActiveMenu { Startscreen, MainMenu, Opener, Settings, Credits, PauseMenu }
+public enum ActiveMenu { None, Startscreen, MainMenu, Opener, Settings, Credits, PauseMenu }
 
 [System.Serializable] public class ActiveMenuEvent : UnityEvent<ActiveMenu> { }
 [System.Serializable] public class FloatEvent : UnityEvent<float> { }

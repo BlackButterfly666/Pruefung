@@ -9,26 +9,26 @@ public class PlayerMovement : MonoBehaviour {
 	public float gravity = 20f;
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
-	//[SerializeField] 
-	GameObject eventManagerObject;
-	EventManager eventManagerScript;
+    private Animator animator;
+	//[SerializeField]
 
 	private void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		controller = GetComponent<CharacterController>();
-
-		eventManagerObject = GameObject.Find("Manager");
-		eventManagerScript = GetComponent<EventManager>();
+        animator = GetComponentInChildren<Animator>();
 	}
 
 	void Update()
 	{
 		Move();
 		//LockMouse();
-		//ReleaseMouse();
+		//ReleaseMouse();s
 		
-		if (Input.GetKeyDown(KeyCode.Escape)) { eventManagerScript.ChangeMenu.Invoke(ActiveMenu.PauseMenu); }
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EventManager.Instance.ChangeMenu.Invoke(ActiveMenu.PauseMenu);
+        }
 	}
 
 	public void Move()
@@ -53,6 +53,13 @@ public class PlayerMovement : MonoBehaviour {
 
 		//Applying gravity to the controller
 		moveDirection.y -= gravity * Time.deltaTime;
+
+
+        animator.SetFloat("WalkingSpeed", System.Math.Abs(moveDirection.x));
+
+        if (moveDirection.x != 0)
+            animator.SetTrigger("WalkingTrigger");
+
 		//Making the character move
 		controller.Move(moveDirection * Time.deltaTime);
 	}
