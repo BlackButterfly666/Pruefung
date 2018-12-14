@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
     private Animator animator;
+    private SpriteRenderer renderer;
 	//[SerializeField]
 
 	private void Start()
@@ -17,7 +18,8 @@ public class PlayerMovement : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.Locked;
 		controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
-	}
+        renderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
 	void Update()
 	{
@@ -53,7 +55,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		//Applying gravity to the controller
 		moveDirection.y -= gravity * Time.deltaTime;
-
+        
+        renderer.flipX = moveDirection.x == 0 ? renderer.flipX : moveDirection.x < 0;
 
         animator.SetFloat("WalkingSpeed", System.Math.Abs(moveDirection.x));
 
