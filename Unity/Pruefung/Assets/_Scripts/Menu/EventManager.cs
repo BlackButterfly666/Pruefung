@@ -1,19 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
 	MenuManager menuManager;
-	LevelManager levelManager;
-	MenuTurn menuTurn;
+	//MenuTurn menuTurn;
 
 	public UnityEvent StartPlaying = new UnityEvent();
-	public UnityEvent BackToMenu = new UnityEvent();
+	//public UnityEvent BackToMenu = new UnityEvent();
 	public UnityEvent<ActiveMenu> ChangeMenu = new ActiveMenuEvent();
 	public UnityEvent<float> ChangeVolume = new FloatEvent();
-	//public UnityEvent "name" = new UnityEvent();
 
 	#region Singleton
 	static EventManager instance;
@@ -26,15 +22,15 @@ public class EventManager : MonoBehaviour
 
 	private void Awake()
 	{
-		levelManager = GetComponent<LevelManager>();
-		menuTurn = GetComponentInParent<MenuTurn>();
+		//menuTurn = GetComponentInParent<MenuTurn>();
 
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else { Instance = this; }
-    }
+
+		if (Instance != null && Instance != this)
+		{
+			Destroy(this);
+		}
+		else { Instance = this; }
+	}
 
 	public void Update()
 	{
@@ -54,12 +50,12 @@ public class EventManager : MonoBehaviour
 	public void StartPlayingButton() { ChangeMenu.Invoke(ActiveMenu.Opener); }
 
 	public void SkipIntroButton() { StartPlaying.Invoke(); ChangeMenu.Invoke(ActiveMenu.None); }//ClosePanel(menuManager.MainMenu.gameObject); }
-	public void BackToMainMenu()
-	{
-		BackToMenu.Invoke();
-		levelManager.LoadMenu();
-		//ChangeMenu.Invoke(ActiveMenu.MainMenu);
-	}
+
+	//public void BackToMainMenu()
+	//{
+	//	BackToMenu.Invoke();
+	//	levelManager.LoadMenu();
+	//}
 
 	public void ClosePanel(GameObject go) { go.SetActive(false); }
 	public void QuitGame() { Application.Quit(); }
@@ -67,8 +63,6 @@ public class EventManager : MonoBehaviour
 	//Settings
 	public void SoundVolSlider(float soundVol) { ChangeVolume.Invoke(soundVol); }
 	public void MusicVolSlider(float musicVol) { ChangeVolume.Invoke(musicVol); }
-
-	//public void BUTTONTEST() { Debug.Log("BUTTONTEST"); }
 
 	#endregion
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MenuTurn : MonoBehaviour
 {
@@ -57,6 +55,4 @@ public class MenuTurn : MonoBehaviour
 		cam.transform.SetPositionAndRotation(centerPos, center);
 		//cam.transform.CamMovement(camCenter, 10f);
 	}
-
-
 }

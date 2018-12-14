@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,7 +13,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         EventManager.Instance.StartPlaying.AddListener(LoadLevel);
-        //EventManager.Instance.BackToMenu.AddListener(LoadMenu);
     }
 
     struct ColorPot
@@ -39,7 +37,6 @@ public class LevelManager : MonoBehaviour
         int redCount, greenCount, blueCount;
         redCount = greenCount = blueCount = dropCount / 3;
 
-
         List<ColorPot> colorPot = new List<ColorPot>();
         for (int i = 0; i < redCount; i++)
             colorPot.Add(new ColorPot(Color.red, "red"));
@@ -63,7 +60,6 @@ public class LevelManager : MonoBehaviour
                 
                 d.tag = color.tag;
             }
-            
         }
     }
 
@@ -77,8 +73,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene("Level01");
         StartCoroutine(ResubListener(level));
-
-
     }
 
     public void LoadMenu()
@@ -101,6 +95,5 @@ public class LevelManager : MonoBehaviour
         }
 
         if (scene == level) { EventManager.Instance.StartPlaying.AddListener(LoadLevel); }
-        //else if (scene == menu) { EventManager.Instance.BackToMenu.AddListener(LoadMenu); }
     }
 }

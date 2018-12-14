@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,17 +8,13 @@ public class OpenerManager : MonoBehaviour
 	[SerializeField] GameObject continueButton;
 
 	[SerializeField] Text text;
-	string[] openerText = new string[6];
-
-	[SerializeField] Image Image;
-	Image[] images = new Image[6];
-
+	string[] openerText = new string[11];
 	[SerializeField] TextContainer textContainer;
 
 	EventManager eventManager;
 
 	int i;
-	float t = 3f;
+	float t = 6f;
 
 	private void OnEnable()
 	{
@@ -54,6 +49,11 @@ public class OpenerManager : MonoBehaviour
 		openerText[3] = textContainer.text04;
 		openerText[4] = textContainer.text05;
 		openerText[5] = textContainer.text06;
+		openerText[6] = textContainer.text07;
+		openerText[7] = textContainer.text08;
+		openerText[8] = textContainer.text09;
+		openerText[9] = textContainer.text10;
+		openerText[10] = textContainer.text11;
 	}
 
 	public IEnumerator FadeIn(float t, Text text)
@@ -65,7 +65,7 @@ public class OpenerManager : MonoBehaviour
 			yield return null;
 		}
 
-		if (i <= 5) { StartCoroutine(FadeOut(t, text)); }
+		if (i <= 10) { StartCoroutine(FadeOut(t, text)); }
 		else { continueButton.gameObject.SetActive(true); }
 	}
 
@@ -78,7 +78,7 @@ public class OpenerManager : MonoBehaviour
 			yield return null;
 		}
 
-		if (i < 6)
+		if (i < 11)
 		{
 			StartCoroutine(FadeIn(t, text));
 			this.text.text = openerText[i];

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CollectItem : MonoBehaviour
 {
@@ -10,8 +8,6 @@ public class CollectItem : MonoBehaviour
 	[SerializeField] Material posProcessing;
 	[SerializeField] Shader farbfront;
 
-	//[SerializeField] int colordropCount = 0;
-
 	private string rDrop = "_RedDrops";
 	public int rDropCount = 0;
 	private string gDrop = "_GreenDrops";
@@ -19,12 +15,18 @@ public class CollectItem : MonoBehaviour
 	private string bDrop = "_BlueDrops";
 	public int bDropCount = 0;
 
-	void Start()
-	{
-	}
+	float tRed = 0f;
+	float tGreen = 0f;
+	float tBlue = 0f;
 
-	void Update()
+
+	private void Update()
 	{
+		WinCheck();
+
+		tRed += 0.5f * Time.deltaTime;
+		tGreen += 0.5f * Time.deltaTime;
+		tBlue += 0.5f * Time.deltaTime;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -35,29 +37,27 @@ public class CollectItem : MonoBehaviour
 
 		if (other.CompareTag("red"))
 		{
-			posProcessing.SetFloat(rDrop, redDropAmount + 0.2f);
+			float lerpColor = Mathf.Lerp(redDropAmount, redDropAmount + 0.2f, tRed);
+			posProcessing.SetFloat(rDrop, lerpColor);
 			other.gameObject.SetActive(false);
 			rDropCount++;
 		}
 
 		if (other.CompareTag("green"))
 		{
-			posProcessing.SetFloat(gDrop, greenDropAmount + 0.2f);
+			float lerpColor = Mathf.Lerp(greenDropAmount, greenDropAmount + 0.2f, tGreen);
+			posProcessing.SetFloat(gDrop, lerpColor);
 			other.gameObject.SetActive(false);
 			gDropCount++;
 		}
 
 		if (other.CompareTag("blue"))
 		{
-			posProcessing.SetFloat(bDrop, blueDropAmount + 0.2f);
+			float lerpColor = Mathf.Lerp(blueDropAmount, blueDropAmount + 0.2f, tBlue);
+			posProcessing.SetFloat(bDrop, lerpColor);
 			other.gameObject.SetActive(false);
 			bDropCount++;
 		}
-
-		//other.gameObject.SetActive(false);
-
-		//if (!other.CompareTag("red")) { return; }
-		//posProcessing.SetFloat("_BlueDrops", 1f);
 	}
 
 	private void OnDisable()
@@ -65,5 +65,14 @@ public class CollectItem : MonoBehaviour
 		posProcessing.SetFloat(rDrop, 0f);
 		posProcessing.SetFloat(gDrop, 0f);
 		posProcessing.SetFloat(bDrop, 0f);
+	}
+	void WinCheck()
+	{
+		if ((rDropCount == 5) && (gDropCount == 5) && (bDropCount == 5))
+		{
+			EventManager.Instance.ChangeMenu.Invoke(ActiveMenu.PauseMenu);
+			print("You collect every Colordrop. Now Wagner ist coloured :D \nYou win this game \nPress 'Quit Game' to leave the game.");
+			//texture change to white Wagner color
+		}
 	}
 }

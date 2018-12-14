@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -11,7 +9,6 @@ public class PlayerMovement : MonoBehaviour {
 	private CharacterController controller;
     private Animator animator;
     private SpriteRenderer renderer;
-	//[SerializeField]
 
 	private void Start()
 	{
@@ -24,13 +21,6 @@ public class PlayerMovement : MonoBehaviour {
 	void Update()
 	{
 		Move();
-		//LockMouse();
-		//ReleaseMouse();s
-		
-		if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            EventManager.Instance.ChangeMenu.Invoke(ActiveMenu.PauseMenu);
-        }
 	}
 
 	public void Move()
@@ -56,6 +46,7 @@ public class PlayerMovement : MonoBehaviour {
 		//Applying gravity to the controller
 		moveDirection.y -= gravity * Time.deltaTime;
         
+		//sprite turn to movement direction
         renderer.flipX = moveDirection.x == 0 ? renderer.flipX : moveDirection.x < 0;
 
         animator.SetFloat("WalkingSpeed", System.Math.Abs(moveDirection.x));
@@ -66,16 +57,4 @@ public class PlayerMovement : MonoBehaviour {
 		//Making the character move
 		controller.Move(moveDirection * Time.deltaTime);
 	}
-
-	//public void LockMouse()
-	//{
-	//	if (Input.GetKeyDown(KeyCode.L))
-	//	{ Cursor.lockState = CursorLockMode.Locked; }
-	//}
-
-	//public void ReleaseMouse()
-	//{
-	//	if (Input.GetKeyDown(KeyCode.U))
-	//	{ Cursor.lockState = CursorLockMode.None; }
-	//}
 }

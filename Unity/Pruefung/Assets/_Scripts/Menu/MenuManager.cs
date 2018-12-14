@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,7 +8,6 @@ public class MenuManager : MonoBehaviour
 	[SerializeField] public RectTransform Settings;
 	[SerializeField] public RectTransform Credits;
 	[SerializeField] public RectTransform PauseMenu;
-
 
 	EventManager eventManager;
 
